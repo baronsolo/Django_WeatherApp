@@ -1,0 +1,32 @@
+{% extends 'weather/base.html' %}
+
+{% block title %}
+Информация о погоде
+{% endblock %}
+
+{% block content %}
+    <h1>Информация</h1>
+    {% if all_info %}
+        {% for info in all_info %}
+        <div class="alert alert-danger">
+            <div class="row">
+                <div class="col-9">
+                    <b>Город:</b>{{ info.city }}<br>
+                    <b>Температура:</b>{{ info.temp }}<sup>0</sup><br>
+                    <b>Ощущается:</b>{{ info.feels_like }}<sup>0</sup><br>
+                    <b>Атмосферное давление:</b>{{ info.pressure }}<sup>hPa</sup><br>
+                    <b>Видимость:</b>{{ info.visibility }}<sup>m</sup><br>
+                    <b>Скорость ветра:</b>{{ info.wind_speed }}<sup>m/s</sup><br>
+                    <b>Направление ветра:</b>{{ info.deg }}<sup>0</sup><br>
+                    <b>Облачность:</b>{{ info.clouds }}<sup>%</sup>
+                </div>
+                <div class="col-2 offset-1">
+                    <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>У вас нет добавленных городов</p>
+    {% endif %}
+{% endblock %}
